@@ -6,6 +6,7 @@ import {Notes} from '../api/notes';
 
 import NoteListHeader from './NoteListHeader';
 import NoteListItem from './NoteListItem.jsx';
+import NoteListEmptyItem from './NoteListEmptyItem.jsx';
 
 // const NoteList = (props) => {
 export const NoteList = ({notes}) => {
@@ -14,18 +15,23 @@ export const NoteList = ({notes}) => {
     // const methodName = (e) => {
     //     //
     // }
+    const renderNotes = () => {
+        if (notes.length > 0) {
+            return notes.map((note, i) => {
+                return (
+                    <NoteListItem key={note._id} note={note}/>
+                )
+            })
+        } else {
+           return <NoteListEmptyItem/>
+        }
+    }
 
     return (
         <div className="note-list">
             <NoteListHeader/>
             NoteList {notes.length}
-            {
-                notes.map((note, i) => {
-                    return (
-                        <NoteListItem key={note._id} note={note}/>
-                    )
-                })
-            }
+            { renderNotes() }
         </div>
     );
 };

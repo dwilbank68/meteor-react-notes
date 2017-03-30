@@ -1,17 +1,14 @@
 import React, { PropTypes } from 'react';
+import {Meteor} from 'meteor/meteor';
+import {createContainer} from 'meteor/react-meteor-data';
 import moment from 'moment';
+import {Session} from 'meteor/session';
 
-
-const NoteListItem = ({note}) => {
-    // no lifecycle methods
-    // no refs
-
-    // const methodName = (e) => {
-    //     //
-    // }
+export const NoteListItem = ({note, Session}) => {
 
     return (
-        <div className="note-list-item">
+        <div    className="note-list-item"
+                onClick={() => {Session.set('selectedNoteId',note._id)}}>
             <h5>{note.title || 'Untitled note'}</h5>
             <p>{moment(note.updatedAt).format('M/DD/YY')}</p>
 
@@ -19,20 +16,14 @@ const NoteListItem = ({note}) => {
     );
 };
 
-
-// NoteListItem.defaultProps = {};
 NoteListItem.propTypes = {
-    note:        PropTypes.object.isRequired,
-//     hndleIptChg: PropTypes.func,
-//     id:          PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]).isRequired,
-//     message:     PropTypes.shape({ title: PropTypes.string, text: PropTypes.string }).isRequired,
-//     comments:    PropTypes.arrayOf(React.PropTypes.object),
-//     todos:       PropTypes.array,
-//     isComplete:  PropTypes.bool,
-//     id:          PropTypes.number,
-//     date:        PropTypes.instanceOf(Date)
+    note:       PropTypes.object.isRequired,
+    Session:    PropTypes.object.isRequired
 };
-//
-// PropTypes -> array, bool, func, number, object, string, symbol
 
-export default NoteListItem;
+export default createContainer(
+    () => {
+        return { Session }
+    },
+    NoteListItem
+);
