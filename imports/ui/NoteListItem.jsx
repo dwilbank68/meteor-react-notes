@@ -10,6 +10,7 @@ export const NoteListItem = ({note, Session}) => {
         <div    className="note-list-item"
                 onClick={() => {Session.set('selectedNoteId',note._id)}}>
             <h5>{note.title || 'Untitled note'}</h5>
+            {note.selected ? 'selected' : undefined}
             <p>{moment(note.updatedAt).format('M/DD/YY')}</p>
 
         </div>

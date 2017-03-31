@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 
 import PrivateHeader from './PrivateHeader';
 import NoteList from './NoteList';
+import Editor from './Editor';
 
 const Dashboard = (props) => {
 
@@ -9,7 +10,8 @@ const Dashboard = (props) => {
         <div className="dashboard">
             <PrivateHeader title="Dashboard"/>
             <div className="page-content">
-                 <NoteList/>
+                <NoteList/>
+                <Editor/>
             </div>
         </div>
     );

@@ -1,6 +1,8 @@
 import {Meteor} from 'meteor/meteor';
 import React from 'react';
 import {Router, Route, browserHistory} from 'react-router';
+import {Session} from 'meteor/session';
+
 
 import LogIn from       '../ui/LogIn';
 import SignUp from      '../ui/SignUp';
@@ -35,17 +37,25 @@ const onEnterPrivatePage = () => {
     }
 }
 
+const onEnterNotePage = (nextState) => {
+    if (!Meteor.userId()){
+        browserHistory.replace('/')
+    } else {
+        Session.set('selectedNoteId', nextState.params.id)
+    }
+}
+
 export const routes = (
     <Router history={browserHistory}>
-        <Route path="/"             component={LogIn}
+        <Route path="/"                 component={LogIn}
                onEnter={onEnterPublicPage}/>
-        <Route path="/signup"       component={SignUp}
+        <Route path="/signup"           component={SignUp}
                onEnter={onEnterPublicPage}/>
-        <Route path="/dashboard"    component={Dashboard}
+        <Route path="/dashboard"        component={Dashboard}
                onEnter={onEnterPrivatePage}/>
         <Route path="/dashboard/:id"    component={Dashboard}
-               onEnter={onEnterPrivatePage}/>
-        <Route path="*"             component={NotFound}
+               onEnter={onEnterNotePage}/>
+        <Route path="*"                 component={NotFound}
                onEnter={onEnterPrivatePage}/>
     </Router>
 )
