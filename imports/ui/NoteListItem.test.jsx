@@ -34,7 +34,7 @@ if (Meteor.isClient) {
         });
 
         it('should call set on click', function () {
-            const wrapper =  mount(
+            const wrapper = mount(
                 <NoteListItem note={notes[0]} Session={Session}/>
             );
             wrapper.find('div').simulate('click');

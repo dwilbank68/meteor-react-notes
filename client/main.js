@@ -10,7 +10,8 @@ import '../imports/startup/simpl-schema-configuration.js';
 
 Tracker.autorun(() => {
     const isAuth = !!Meteor.userId();
-    onAuthChange(isAuth);
+    const currentPagePrivacy = Session.get('currentPagePrivacy');
+    onAuthChange(isAuth, currentPagePrivacy);
 })
 
 Tracker.autorun(() => {
