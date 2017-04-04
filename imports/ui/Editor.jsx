@@ -19,7 +19,6 @@ export class Editor extends Component {
         }
     }
 
-
     constructor(props, context){
         super(props, context);
         this.state = {
@@ -81,7 +80,7 @@ export class Editor extends Component {
             let msg = this.props.selectedNoteId ?
                 'Note not found':
                 'Pick or create a note';
-            return <p> {msg} </p>
+            return <p>{msg}</p>
         }
 
     }
