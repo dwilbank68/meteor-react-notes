@@ -4,16 +4,49 @@ import expect from 'expect';
 import {mount, shallow} from 'enzyme';
 
 import {NoteListHeader} from './NoteListHeader';
+import {notes} from '../fixtures/fixtures';
 
 if (Meteor.isClient) {
 
     describe('NoteListHeader', function() {
+        let meteorCallSpy;
+        let SessionSpyObj;
+
+        beforeEach(function(){
+            meteorCallSpy = expect.createSpy();
+            SessionSpyObj = {
+                set: expect.createSpy()
+            }
+        })
+        
         it('should call meteorCall on click', function () {
             const meteorCallSpy = expect.createSpy();
-            const wrapper =  mount(<NoteListHeader meteorCall={meteorCallSpy}/>);
+            const wrapper =  mount(
+                <NoteListHeader meteorCall={meteorCallSpy} Session={SessionSpyObj}/>
+
+            );
             wrapper.find('button').simulate('click');
-            expect(meteorCallSpy).toHaveBeenCalledWith('notes.insert');
+
+            meteorCallSpy.calls[0].arguments[1](undefined, notes[0]._id);
+            // expect(meteorCallSpy).toHaveBeenCalledWith('notes.insert');
+            expect(meteorCallSpy.calls[0].arguments[0]).toBe('notes.insert');
+            expect(SessionSpyObj.set).toHaveBeenCalledWith('selectedNoteId', notes[0]._id);
         });
+
+        it('should not set Session upon a failed insert', function () {
+            const meteorCallSpy = expect.createSpy();
+            const wrapper =  mount(
+                <NoteListHeader meteorCall={meteorCallSpy} Session={SessionSpyObj}/>
+
+            );
+            wrapper.find('button').simulate('click');
+
+            meteorCallSpy.calls[0].arguments[1]({}); // firing callback with error object
+
+            expect(meteorCallSpy.calls[0].arguments[0]).toBe('notes.insert');
+            expect(SessionSpyObj.set).toNotHaveBeenCalled;
+        });
+
     });
 
 }

@@ -60,7 +60,7 @@ export default createContainer(
         Meteor.subscribe('notes');
         return {
             notes: Notes
-                .find()
+                .find({}, {sort:{'updatedAt':-1}} )
                 .fetch()
                 .map((n) => {
                     return {
