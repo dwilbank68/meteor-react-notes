@@ -64,16 +64,20 @@ export class Editor extends Component {
         if (this.props.note) {
             return (
                 <div className="editor">
-                    <input      type="text"
+                    <input      className="editor__title"
+                                type="text"
                                 value={this.state.title}
                                 placeholder="Your title here"
                                 onChange={this.handleTitleChange}/>
-                    <textarea   value={this.state.body}
+                    <textarea   className="editor__body"
+                                value={this.state.body}
                                 placeholder="Your note here"
                                 onChange={this.handleBodyChange}/>
-                    <button onClick={this.deleteNote}>
-                        Delete Note
-                    </button>
+                    <div>
+                        <button onClick={this.deleteNote}>
+                            Delete Note
+                        </button>
+                    </div>
                 </div>
             );
         } else {
