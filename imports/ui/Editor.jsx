@@ -80,7 +80,11 @@ export class Editor extends Component {
             let msg = this.props.selectedNoteId ?
                 'Note not found':
                 'Pick or create a note';
-            return <p>{msg}</p>
+            return (
+                <div className="editor">
+                    <p>{msg}</p>
+                </div>
+            )
         }
 
     }
