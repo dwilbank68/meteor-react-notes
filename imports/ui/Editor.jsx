@@ -65,7 +65,6 @@ export class Editor extends Component {
             return (
                 <div className="editor">
                     <input      className="editor__title"
-                                type="text"
                                 value={this.state.title}
                                 placeholder="Your title here"
                                 onChange={this.handleTitleChange}/>
@@ -74,7 +73,8 @@ export class Editor extends Component {
                                 placeholder="Your note here"
                                 onChange={this.handleBodyChange}/>
                     <div>
-                        <button onClick={this.deleteNote}>
+                        <button className="button button--secondary"
+                                onClick={this.deleteNote}>
                             Delete Note
                         </button>
                     </div>
@@ -86,7 +86,7 @@ export class Editor extends Component {
                 'Pick or create a note';
             return (
                 <div className="editor">
-                    <p>{msg}</p>
+                    <p className="editor__message">{msg}</p>
                 </div>
             )
         }
