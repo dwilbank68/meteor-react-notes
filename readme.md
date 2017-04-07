@@ -1,13 +1,19 @@
-### Terminal
+# Notes App
 
-    meteor npm i
+## Getting Started
 
-    meteor remove autopublish       // 1
-    meteor remove insecure          // 2
-      
-    
-    
-    // 1 -  so data is no longer shared with
-    //      all users indescriminately
-    // 2 -  so database can't be manipulated from the client
-            except by method calls
+Clone repo and run:
+
+```
+meteor npm install
+meteor
+```
+
+## Running the tests
+
+```
+npm test
+
+```
+
+view tests at localhost:4000
