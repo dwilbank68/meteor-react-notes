@@ -29,7 +29,6 @@ export const NoteList = ({notes}) => {
     return (
         <div className="item-list">
             <NoteListHeader/>
-            NoteList {notes.length}
             { renderNotes() }
         </div>
     );

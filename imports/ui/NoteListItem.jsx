@@ -6,13 +6,17 @@ import {Session} from 'meteor/session';
 
 export const NoteListItem = ({note, Session}) => {
 
-    return (
-        <div    className="note-list-item"
-                onClick={() => {Session.set('selectedNoteId',note._id)}}>
-            <h5>{note.title || 'Untitled note'}</h5>
-            {note.selected ? 'selected' : undefined}
-            <p>{moment(note.updatedAt).format('M/DD/YY')}</p>
+    const className = note.selected ? 'item item--selected':'item';
 
+    return (
+        <div    className={className}
+                onClick={() => {Session.set('selectedNoteId',note._id)}}>
+            <h5 className="item__title">
+                {note.title || 'Untitled note'}
+            </h5>
+            <p className="item__subtitle">
+                {moment(note.updatedAt).format('M/DD/YY')}
+            </p>
         </div>
     );
 };

@@ -17,8 +17,9 @@ export const NoteListHeader = ({meteorCall, Session}) => {
     }
 
     return (
-        <div>
-            <button onClick={onClick}>
+        <div className="item-list__header">
+            <button className="button"
+                    onClick={onClick}>
                 Create Note
             </button>
         </div>

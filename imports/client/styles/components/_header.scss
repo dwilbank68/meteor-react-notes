@@ -4,12 +4,23 @@
 }
 
 .header__content {
+  align-items: center;
   display: flex;
   height: $header-height;
   justify-content: space-between;
   margin: 0 auto;
   max-width: $site-max-width;
   padding: $space;
+}
+
+.header__nav-toggle {
+    cursor: pointer;
+    height: 2rem;
+    width: 2rem;
+
+    @include desktop {
+        display: none;
+    }
 }
 
 .header__title {
